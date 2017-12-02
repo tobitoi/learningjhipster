@@ -1,0 +1,56 @@
+{
+    "fluentMethods": true,
+    "relationships": [
+        {
+            "relationshipName": "employee",
+            "otherEntityName": "employee",
+            "relationshipType": "many-to-one",
+            "otherEntityField": "id"
+        }
+    ],
+    "fields": [
+        {
+            "fieldName": "checkInTime",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "checkOutTime",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "description",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "shift",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "checkType",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "verifyCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "sensorId",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "workCode",
+            "fieldType": "Integer"
+        },
+        {
+            "fieldName": "sn",
+            "fieldType": "String"
+        }
+    ],
+    "changelogDate": "20171202101233",
+    "entityTableName": "attendance",
+    "dto": "mapstruct",
+    "pagination": "infinite-scroll",
+    "service": "no",
+    "jpaMetamodelFiltering": false,
+    "angularJSSuffix": "mySuffix"
+}

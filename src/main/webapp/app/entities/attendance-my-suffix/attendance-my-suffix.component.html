@@ -1,0 +1,78 @@
+<div>
+    <h2>
+        <span>Attendances</span>
+        <button class="btn btn-primary float-right jh-create-entity create-attendance-my-suffix" [routerLink]="['/', { outlets: { popup: ['attendance-my-suffix-new'] } }]">
+            <span class="fa fa-plus"></span>
+            <span >
+            Create new Attendance
+            </span>
+        </button>
+    </h2>
+    <jhi-alert></jhi-alert>
+    <div class="row">
+    </div>
+    <br/>
+    <div class="table-responsive" *ngIf="attendances">
+        <table class="table table-striped">
+            <thead>
+            <tr jhiSort [(predicate)]="predicate" [(ascending)]="reverse" [callback]="reset.bind(this)">
+            <th jhiSortBy="id"><span>ID</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="checkInTime"><span>Check In Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="checkOutTime"><span>Check Out Time</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="description"><span>Description</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="shift"><span>Shift</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="checkType"><span>Check Type</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="verifyCode"><span>Verify Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sensorId"><span>Sensor Id</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="workCode"><span>Work Code</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="sn"><span>Sn</span> <span class="fa fa-sort"></span></th>
+            <th jhiSortBy="employeeId"><span>Employee</span> <span class="fa fa-sort"></span></th>
+            <th></th>
+            </tr>
+            </thead>
+            <tbody infinite-scroll (scrolled)="loadPage(page + 1)" [infiniteScrollDisabled]="page >= links['last']" [infiniteScrollDistance]="0">
+            <tr *ngFor="let attendance of attendances ;trackBy: trackId">
+                <td><a [routerLink]="['../attendance-my-suffix', attendance.id ]">{{attendance.id}}</a></td>
+                <td>{{attendance.checkInTime}}</td>
+                <td>{{attendance.checkOutTime}}</td>
+                <td>{{attendance.description}}</td>
+                <td>{{attendance.shift}}</td>
+                <td>{{attendance.checkType}}</td>
+                <td>{{attendance.verifyCode}}</td>
+                <td>{{attendance.sensorId}}</td>
+                <td>{{attendance.workCode}}</td>
+                <td>{{attendance.sn}}</td>
+                <td>
+                    <div *ngIf="attendance.employeeId">
+                        <a [routerLink]="['../employee-my-suffix', attendance.employeeId  ]" >{{attendance.employeeId}}</a>
+                    </div>
+                </td>
+                <td class="text-right">
+                    <div class="btn-group flex-btn-group-container">
+                        <button type="submit"
+                                [routerLink]="['../attendance-my-suffix', attendance.id ]"
+                                class="btn btn-info btn-sm">
+                            <span class="fa fa-eye"></span>
+                            <span class="d-none d-md-inline">View</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'attendance-my-suffix/'+ attendance.id + '/edit'} }]"
+                                replaceUrl="true"
+                                class="btn btn-primary btn-sm">
+                            <span class="fa fa-pencil"></span>
+                            <span class="d-none d-md-inline">Edit</span>
+                        </button>
+                        <button type="submit"
+                                [routerLink]="['/', { outlets: { popup: 'attendance-my-suffix/'+ attendance.id + '/delete'} }]"
+                                replaceUrl="true"
+                                class="btn btn-danger btn-sm">
+                            <span class="fa fa-remove"></span>
+                            <span class="d-none d-md-inline">Delete</span>
+                        </button>
+                    </div>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
